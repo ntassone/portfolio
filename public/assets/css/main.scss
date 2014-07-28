@@ -57,7 +57,7 @@ p a {
 
 .main-nav {
   padding: $padding;
-  background: url(../img/tex-nav.png);
+  background: white url(../img/tex-nav.png);
   background-size: 132px 132px;
   @include clearfix();
   @include transition(all .3s $ease-out-expo);
