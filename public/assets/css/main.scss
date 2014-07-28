@@ -41,7 +41,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $font-serif;
+  font-family: $font-sans;
   font-weight: 200;
 }
 
@@ -85,7 +85,7 @@ p a {
   nav {
     float: right;
     margin: 1.3rem 0 0;
-    font-family: $font-serif;
+    font-family: $font-sans;
     font-size: 1.25rem;
     font-weight: 100;
     a {
@@ -303,31 +303,47 @@ p a {
   width: 100%;
   aside {
     display: block;
-    @include flexbox();
-    @include flex-grow(0 1);
-    @include align-items(center);
   }
   article {
+    @include flexbox();
     @include flex-grow(1);
-    @include align-items(flex-start);
+    @include flex-flow(row wrap);
+    width: 200px;
+    > div {
+      padding: $padding/2 $padding;
+    }
     p {
       line-height: 1.5;
       font-size: 1.1rem;
     }
-    > div:first-child {
-      padding: $padding/2 $padding;
-    }
-  }
-  .contact {
-    @include flexbox();
-    @include align-items(center);
-    @include flex-flow(row wrap);
-    > a {
-      display: block;
-      @include flex(1, 0, 40%);
+    .contact {
+      @include flex-grow(1);
+      border-top: 1px solid fade-out($gray, .75);
+      padding-top: 4rem;
+      margin-top: 2rem;
       text-align: center;
+      a {
+        display: inline-block;
+        font-size: 1.3rem;
+        margin-right: 1rem;
+        font-family: $font-sans;
+        font-weight: 200;
+      }
     }
   }
+  .twitter {
+    color: $twitter;
+  }
+  .dribbble {
+    color: $dribbble;
+  }
+  .github {
+    color: $github;
+  }
+  .instagram {
+    color: $instagram;
+  }
+
 }
 
 @include keyframes(ouija) {
@@ -389,6 +405,7 @@ main {
   article {
     float: right;
     padding-left: $sidebar-width + 50px;
+    text-align: center;
     > div {
       margin-top: 6.5rem;
       &:first-child {

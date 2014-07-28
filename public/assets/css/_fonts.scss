@@ -2,3 +2,24 @@
 @include font-face(effra, '../fonts/effra/medium/webfont', 300);
 @include font-face(effra, '../fonts/effra/light/webfont', 100);
 @include font-face(effra, '../fonts/effra/bold/webfont', 500);
+@include font-face(social, '../fonts/social/social', normal);
+
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "social";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .5rem;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  font-size: 1rem;
+}
+
+.icon-twitter:before { content: '\e800'; }
+.icon-github:before { content: '\e801'; }
+.icon-instagram:before { content: '\e802'; }
+.icon-dribbble:before { content: '\e803'; }
