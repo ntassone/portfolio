@@ -87,15 +87,20 @@ p a {
     margin: 1.3rem 0 0;
     font-family: $font-serif;
     font-size: 1.25rem;
-    font-weight: 200;
+    font-weight: 100;
     a {
       display: block;
-      padding: .7rem 1rem;
+      padding: .5rem .75rem;
       margin-left: .5rem;
-      border-radius: 2px;
       text-decoration: none;
       &:hover {
-        background: fade-out($blue, .9);
+        color: $red;
+      }
+    }
+    li.active a {
+      font-weight: 300;
+      &:hover {
+        color: $blue;
       }
     }
   }
@@ -294,6 +299,35 @@ p a {
 .about {
   background: url(../img/tex-nav.png);
   background-size: 132px 132px;
+  @include flexbox();
+  width: 100%;
+  aside {
+    display: block;
+    @include flexbox();
+    @include flex-grow(0 1);
+    @include align-items(center);
+  }
+  article {
+    @include flex-grow(1);
+    @include align-items(flex-start);
+    p {
+      line-height: 1.5;
+      font-size: 1.1rem;
+    }
+    > div:first-child {
+      padding: $padding/2 $padding;
+    }
+  }
+  .contact {
+    @include flexbox();
+    @include align-items(center);
+    @include flex-flow(row wrap);
+    > a {
+      display: block;
+      @include flex(1, 0, 40%);
+      text-align: center;
+    }
+  }
 }
 
 @include keyframes(ouija) {
@@ -322,7 +356,9 @@ p a {
 main {
   width: 100%;
   padding: $padding;
+  padding-bottom: 5rem;
   color: $white;
+  @include clearfix();
   p {
     color: $gray;
     a {
@@ -345,6 +381,9 @@ main {
     p {
       font-size: 1.1rem;
       line-height: 1.5;
+    }
+    .project-link a {
+      color: $red;
     }
   }
   article {
@@ -378,5 +417,28 @@ main {
   }
 }
 
+.projects-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  @include flexbox();
+  @include flex-flow(row wrap);
+  li {
+    @include flex(1, 0, 33%);
+    margin-bottom: 2rem;
+    padding: 1rem;
+    text-align: center;
+    a {
+      display: inline-block;
+      color: $gray;
+      &:hover {
+        color: $blue;
+      }
+    }
+  }
+  img {
+    border-radius: 2px;
+  }
+}
 
 
