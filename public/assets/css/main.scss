@@ -1,0 +1,382 @@
+@import '../bourbon/app/assets/stylesheets/bourbon';
+@import 'flex';
+@import 'variables';
+@import 'mixins';
+@import 'fonts';
+
+@import '../normalize.css/normalize.css';
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  @include box-sizing(border-box);
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  margin: 0;
+  padding-top: $header-size;
+  font-family: $font-mono;
+  font-weight: normal;
+  background: $black;
+  @include transition(all .3s $ease-out-expo);
+  &:before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 6px;
+    top: 0;
+    left: 0;
+    background: $red url(../img/tex-header.png) repeat-x;
+    z-index: 1001;
+  }
+  &.header--top {
+    padding-top: 0;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-serif;
+  font-weight: 200;
+}
+
+a {
+  color: $blue;
+  @include transition(all .15s linear);
+  text-decoration: none;
+}
+
+p a {
+  text-decoration: underline;
+}
+
+.main-nav {
+  padding: $padding;
+  background: url(../img/tex-nav.png);
+  background-size: 132px 132px;
+  @include clearfix();
+  @include transition(all .3s $ease-out-expo);
+  .site-id {
+    float: left;
+  }
+  h1 {
+    font-weight: 100;
+    color: $red;
+    margin: 0;
+    a {
+      color: $red;
+      &:hover {
+        color: darken($red, 10%);
+      }
+    }
+  }
+  p {
+    color: $gray;
+    margin: 10px 3px;
+  }
+  h1, p {
+    @include transition(all .3s $ease-out-expo);
+  }
+  nav {
+    float: right;
+    margin: 1.3rem 0 0;
+    font-family: $font-serif;
+    font-size: 1.25rem;
+    font-weight: 200;
+    a {
+      display: block;
+      padding: .7rem 1rem;
+      margin-left: .5rem;
+      border-radius: 2px;
+      text-decoration: none;
+      &:hover {
+        background: fade-out($blue, .9);
+      }
+    }
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+      display: inline-block;
+    }
+  }
+  //Fixed header
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: $header-size;
+  width: 100%;
+  z-index: 1000;
+  &.headroom--not-top {
+    height: 75px;
+    padding: 1.5rem 4rem;
+    .site-id {
+      h1 {
+        // font-size: 1.75rem;
+      }
+      p {
+        opacity: 0;
+      }
+    }
+    nav {
+      margin: -3px 0 0;
+      font-size: 1rem;
+    }
+  }
+}
+
+.project {
+  @include flexbox();
+  width: 100%;
+  > div {
+    position: relative;
+  }
+  p {
+    font-size: 1.1rem;
+  }
+  &.goinstant {
+    .logo {
+      padding: $padding;
+      background: $navy url(../img/goinstant/tree.png) right bottom no-repeat;
+      @include flexbox();
+      @include flex-grow(0 1);
+      @include align-items(center);
+    }
+    .showcase {
+      @include flex-grow(1);
+      @include flexbox();
+      background: #4a83c7 url(../img/goinstant/showcase.png) repeat-x;
+      background-position: left bottom;
+      color: white;
+      > div {
+        width: 100%;
+        padding: $padding/2;
+        z-index: 200;
+        &:first-child {
+          padding: $padding/1.25 $padding;
+        }
+        &:last-child {
+          a {
+            margin: $padding/4;
+          }
+        }
+      }
+      a {
+        display: block;
+      }
+      h2, p {
+        display: inline-block;
+        margin: 0 .25rem 0;
+        color: white;
+      }
+      p {
+        color: lighten($blue, 35%);
+        position: relative;
+        font-size: 1.1rem;
+        top: 1px;
+      }
+      img {
+        border-radius: 2px;
+      }
+      &:after {
+        content: "";
+        @include fill-parent();
+        z-index: 100;
+        @include linear-gradient(lighten($navy, 10%), fade-out(#4a83c7, 1), $fallback: transparent);
+      }
+    }
+  }
+  &.ouija {
+    min-height: 450px;
+    .showcase {
+      @include flexbox();
+      @include flex-grow(2);
+      padding: $padding/2 $padding;
+      background: $purple url(../img/ouija/showcase.png) no-repeat $padding bottom;
+      h2 {
+        margin-bottom: 0;
+        a { color: white; }
+      }
+      p {
+        color: lighten($purple, 30%);
+        margin-top: .65rem;
+        a {
+          color: lighten($purple, 30%);
+        }
+      }
+    }
+    .logo {
+      position: relative;
+      @include flex-grow(1);
+      @include flexbox();
+      @include align-items(center);
+      @include justify-content(center);
+      background: darken($purple, 5%) url(../img/ouija/logo-bg.png) no-repeat;
+      background-size: cover;
+      background-position: -9rem center;
+      min-width: 350px;
+      overflow: hidden;
+      img {
+        position: absolute;
+        z-index: 2;
+        right: 50px;
+        &.shadow {
+          z-index: 1;
+          top: 22px;
+          right: 40px;
+        }
+      }
+    }
+    .ouija-logo {
+      position: relative;
+      @include animation(ouija 7s $ease-in-out-quart infinite);
+      > div {
+        width: 250px;
+        height: 300px;
+      }
+    }
+  }
+  &.illo {
+    p, p a {
+      color: darken($gray, 25%);
+      
+    }
+    .logo {
+      @include flex-grow(1);
+      @include flexbox();
+      @include align-items(flex-end);
+      @include justify-content(flex-start);
+      background: gray url(../img/illo/select.png) center 57% no-repeat;
+      min-height: 550px;
+      max-width: 450px;
+      padding: $padding/2 $padding;
+    }
+    .showcase {
+      @include flexbox();
+      @include flex-grow(2);
+      background: $black;
+      > div {
+        width: 100%;
+        padding: $padding/1.2 $padding/3 $padding/1.2 $padding;
+        &:last-child {
+          padding-left: 0;
+        }
+      }
+      h2 {
+        margin-top: 0;
+        margin-bottom: 2rem;
+        a {
+          color: white;
+        }
+      }
+      > a {
+        float: left;
+        clear: both;
+      }
+      p {
+        margin-bottom: 1.5rem;
+      }
+      .top {
+        display: block;
+        margin-bottom: -4rem;
+      }
+    }
+  }
+}
+
+.about {
+  background: url(../img/tex-nav.png);
+  background-size: 132px 132px;
+}
+
+@include keyframes(ouija) {
+  0% {
+    left: 0;
+    top: 0;
+  }
+  25% {
+    left: -25px;
+    top: -25px;
+  }
+  50% {
+    left: -50px;
+    top: 25px;
+  }
+  75% {
+    left: 25px;
+    top: -50px;
+  }
+  100% {
+    left: 0;
+    top: 0;
+  }
+}
+
+main {
+  width: 100%;
+  padding: $padding;
+  color: $white;
+  p {
+    color: $gray;
+    a {
+      position: relative;
+      text-decoration: none;
+      border-bottom: 1px solid $blue;
+      &:hover {
+        color: $red;
+        border-color: $red;
+      }
+    }
+  }
+  aside {
+    width: $sidebar-width;
+    position: fixed;
+    h2 {
+      font-weight: 300;
+      font-size: 2.25rem;
+    }
+    p {
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+  }
+  article {
+    float: right;
+    padding-left: $sidebar-width + 50px;
+    > div {
+      margin-top: 6.5rem;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+    img {
+      border-radius: 2px;
+    }
+  }
+  .back {
+    display: block;
+    color: $gray;
+    border-top: 1px solid #222;
+    padding-top: 2rem;
+    text-transform: uppercase;
+    &:before {
+      content: "\2190";
+      position: relative;
+      top: 1px;
+      margin-right: 3px;
+    }
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+
+
