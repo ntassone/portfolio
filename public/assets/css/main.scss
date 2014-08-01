@@ -543,7 +543,6 @@ main {
     }
   }
   article {
-    float: right;
     padding-left: $sidebar-width + 50px;
     text-align: center;
     @include screen($screen-tablet) {
