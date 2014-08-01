@@ -76,7 +76,7 @@ p a {
     color: $red;
     margin: 0;
     @include screen($screen-mobile) {
-      font-size: 1.75em;
+      font-size: 1.75rem;
     }
     a {
       color: $red;
@@ -88,8 +88,6 @@ p a {
   p {
     color: $gray;
     margin: 10px 3px;
-  }
-  h1, p {
     @include transition(all .3s $ease-out-expo);
   }
   nav {
@@ -137,12 +135,14 @@ p a {
     height: 75px;
     padding: 1.5rem 4rem;
     @include screen($screen-tablet) {
-      padding: 1.5rem;
+      padding: 1.2rem 1.2rem .75rem;
+      height: auto;
     }
     .site-id {
       h1 {
         @include screen($screen-tablet) {
           float: left;
+          font-size: 1rem;
         }
       }
       p {
@@ -154,10 +154,12 @@ p a {
     }
     nav {
       margin: -3px 0 0;
-      font-size: 1rem;
       @include screen($screen-tablet) {
         float: right;
-        margin-top: 0;
+        a {
+          font-size: 1rem;
+          padding: 0;
+        }
       }
     }
   }
@@ -268,6 +270,7 @@ p a {
       overflow: hidden;
       @include screen($screen-tablet) {
         background-position: center;
+        min-width: 0;
       }
       img {
         position: absolute;
@@ -385,6 +388,9 @@ p a {
     @include flex-flow(row wrap);
     > div {
       padding: $padding/2 $padding;
+      @include screen($screen-mobile) {
+        padding: $padding/2;
+      }
     }
     p {
       line-height: 1.5;
@@ -392,31 +398,66 @@ p a {
     }
     .contact {
       @include flex-grow(1);
+      @include flexbox();
+      @include flex(1, 0, 25%);
       border-top: 1px solid fade-out($gray, .75);
-      padding-top: 4rem;
+      padding-top: 2rem;
       margin-top: 2rem;
-      text-align: center;
+      @include screen($screen-mobile) {
+        padding: 0;
+        margin-top: 0;
+        border-top: 0;
+      }
       a {
         display: inline-block;
         font-size: 1.3rem;
         margin-right: 1rem;
         font-family: $font-sans;
         font-weight: 200;
+        text-align: center;
+        @include screen($screen-mobile) {
+          color: white;
+          margin: 0;
+          width: 100%;
+          height: 80px;
+          padding-top: 24px;
+          font-size: 25px;
+          span:before {
+            font-size: 1.5rem;
+            margin-right: 0;
+          }
+          span:last-child {
+            display: none;
+          }
+        }
       }
     }
   }
   .twitter {
     color: $twitter;
+    @include screen($screen-mobile) {
+      background-color: $twitter;
+    }
   }
   .dribbble {
     color: $dribbble;
+    @include screen($screen-mobile) {
+      background-color: $dribbble;
+    }
   }
   .github {
     color: $github;
+    @include screen($screen-mobile) {
+      background-color: $github;
+    }
   }
   .instagram {
     color: $instagram;
+    @include screen($screen-mobile) {
+      background-color: $instagram;
+    }
   }
+
 
 }
 
