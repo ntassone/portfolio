@@ -61,13 +61,23 @@ p a {
   background-size: 132px 132px;
   @include clearfix();
   @include transition(all .3s $ease-out-expo);
+  @include screen($screen-mobile) {
+    padding: $padding/2;
+  }
   .site-id {
     float: left;
+    @include screen($screen-mobile) {
+      float: none;
+      text-align: center;
+    }
   }
   h1 {
     font-weight: 100;
     color: $red;
     margin: 0;
+    @include screen($screen-mobile) {
+      font-size: 1.75em;
+    }
     a {
       color: $red;
       &:hover {
@@ -88,6 +98,10 @@ p a {
     font-family: $font-sans;
     font-size: 1.25rem;
     font-weight: 100;
+    @include screen($screen-mobile) {
+      float: none;
+      text-align: center;
+    }
     a {
       display: block;
       padding: .5rem .75rem;
@@ -122,17 +136,29 @@ p a {
   &.headroom--not-top {
     height: 75px;
     padding: 1.5rem 4rem;
+    @include screen($screen-tablet) {
+      padding: 1.5rem;
+    }
     .site-id {
       h1 {
-        // font-size: 1.75rem;
+        @include screen($screen-tablet) {
+          float: left;
+        }
       }
       p {
         opacity: 0;
+        @include screen($screen-tablet) {
+          display: none;
+        }
       }
     }
     nav {
       margin: -3px 0 0;
       font-size: 1rem;
+      @include screen($screen-tablet) {
+        float: right;
+        margin-top: 0;
+      }
     }
   }
 }
@@ -147,11 +173,13 @@ p a {
     font-size: 1.1rem;
   }
   &.goinstant {
+    @include screen($screen-tablet) {
+      @include flex-dir(column);
+    }
     .logo {
       padding: $padding;
       background: $navy url(../img/goinstant/tree.png) right bottom no-repeat;
       @include flexbox();
-      @include flex-grow(0 1);
       @include align-items(center);
     }
     .showcase {
@@ -200,11 +228,18 @@ p a {
   }
   &.ouija {
     min-height: 450px;
+    @include screen($screen-tablet) {
+      @include flex-dir(column);
+    }
     .showcase {
       @include flexbox();
       @include flex-grow(2);
       padding: $padding/2 $padding;
       background: $purple url(../img/ouija/showcase.png) no-repeat $padding bottom;
+      @include screen($screen-mobile) {
+        height: 300px;
+        background-position: center;
+      }
       h2 {
         margin-bottom: 0;
         a { color: white; }
@@ -212,6 +247,9 @@ p a {
       p {
         color: lighten($purple, 30%);
         margin-top: .65rem;
+        @include screen($screen-mobile) {
+          max-width: 50%;
+        }
         a {
           color: lighten($purple, 30%);
         }
@@ -228,6 +266,9 @@ p a {
       background-position: -9rem center;
       min-width: 350px;
       overflow: hidden;
+      @include screen($screen-mobile) {
+        background-position: center;
+      }
       img {
         position: absolute;
         z-index: 2;
@@ -241,7 +282,7 @@ p a {
     }
     .ouija-logo {
       position: relative;
-      @include animation(ouija 7s $ease-in-out-quart infinite);
+      // @include animation(ouija 7s $ease-in-out-quart infinite);
       > div {
         width: 250px;
         height: 300px;
@@ -249,9 +290,12 @@ p a {
     }
   }
   &.illo {
+    @include screen($screen-tablet) {
+      @include flex(1, 100%, auto);
+      @include flex-dir(column);
+    }
     p, p a {
       color: darken($gray, 25%);
-      
     }
     .logo {
       @include flex-grow(1);
@@ -262,6 +306,15 @@ p a {
       min-height: 550px;
       max-width: 450px;
       padding: $padding/2 $padding;
+      @include screen($screen-tablet) {
+        text-align: center;
+        max-width: none;
+        min-height: 400px;
+        background-size: cover;
+      }
+      @include screen($screen-tablet) {
+        background-size: 100%;
+      }
     }
     .showcase {
       @include flexbox();
@@ -270,6 +323,9 @@ p a {
       > div {
         width: 100%;
         padding: $padding/1.2 $padding/3 $padding/1.2 $padding;
+        @include screen($screen-tablet) {
+          padding: $padding/2;
+        }
         &:last-child {
           padding-left: 0;
         }
@@ -301,14 +357,32 @@ p a {
   background-size: 132px 132px;
   @include flexbox();
   width: 100%;
+  @include screen($screen-mobile) {
+    @include flex-dir(column);
+  }
+
   aside {
     display: block;
+    width: 110%;
+    background: #222 url(../img/nick.png) right no-repeat;
+    background-size: cover;
+    @include flexbox();
+    @include align-items(center);
+    @include screen($screen-mobile) {
+      height: 300px;
+      background-position: center center;
+    }
+    img {
+      width: 200%;
+    }
+    @include screen($screen-tablet) {
+      width: 100%;
+    }
   }
   article {
     @include flexbox();
     @include flex-grow(1);
     @include flex-flow(row wrap);
-    width: 200px;
     > div {
       padding: $padding/2 $padding;
     }
@@ -375,6 +449,9 @@ main {
   padding-bottom: 5rem;
   color: $white;
   @include clearfix();
+  @include screen($screen-tablet) {
+    padding: 2rem;
+  }
   p {
     color: $gray;
     a {
@@ -390,6 +467,11 @@ main {
   aside {
     width: $sidebar-width;
     position: fixed;
+    @include screen($screen-tablet) {
+      width: auto;
+      position: relative;
+      text-align: center;
+    }
     h2 {
       font-weight: 300;
       font-size: 2.25rem;
@@ -406,8 +488,15 @@ main {
     float: right;
     padding-left: $sidebar-width + 50px;
     text-align: center;
+    @include screen($screen-tablet) {
+      margin: 2rem 0;
+      padding-left: 0;
+    }
     > div {
       margin-top: 6.5rem;
+      @include screen($screen-tablet) {
+        margin-top: 2rem;
+      }
       &:first-child {
         margin-top: 0;
       }
@@ -440,16 +529,29 @@ main {
   margin: 2rem 0;
   @include flexbox();
   @include flex-flow(row wrap);
+  @include screen($screen-mobile) {
+    @include flex-dir(column);
+    margin: 0;
+  }
   li {
     @include flex(1, 0, 33%);
     margin-bottom: 2rem;
     padding: 1rem;
     text-align: center;
+    @include screen($screen-mobile) {
+      @include flex(0, 0, 0);
+      margin-bottom: 1rem;
+    }
     a {
       display: inline-block;
       color: $gray;
       &:hover {
         color: $blue;
+      }
+    }
+    h4 {
+      @include screen($screen-mobile) {
+        margin: .5rem 0;
       }
     }
   }
