@@ -266,7 +266,7 @@ p a {
       background-position: -9rem center;
       min-width: 350px;
       overflow: hidden;
-      @include screen($screen-mobile) {
+      @include screen($screen-tablet) {
         background-position: center;
       }
       img {
@@ -282,7 +282,7 @@ p a {
     }
     .ouija-logo {
       position: relative;
-      // @include animation(ouija 7s $ease-in-out-quart infinite);
+      @include animation(ouija 7s $ease-in-out-quart infinite);
       > div {
         width: 250px;
         height: 300px;
