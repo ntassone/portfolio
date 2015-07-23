@@ -20,21 +20,10 @@ img {
 
 body {
   margin: 0;
-  padding-top: $header-size;
   font-family: $font-mono;
   font-weight: normal;
-  background: $black;
-  @include transition(all .3s $ease-out-expo);
-  &:before {
-    content: "";
-    position: fixed;
-    width: 100%;
-    height: 6px;
-    top: 0;
-    left: 0;
-    background: $red url(../img/tex-header.png) repeat-x;
-    z-index: 1001;
-  }
+  background: $white;
+  @include transition(all .1s $ease-out-expo);
   &.header--top {
     padding-top: 0;
   }
@@ -42,12 +31,12 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-sans;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 a {
   color: $blue;
-  @include transition(all .15s linear);
+  @include transition(all .05s linear);
   text-decoration: none;
 }
 
@@ -56,11 +45,12 @@ p a {
 }
 
 .main-nav {
-  padding: $padding;
-  background: white url(../img/tex-nav.png);
-  background-size: 132px 132px;
+  padding: $padding/1.5 $padding;
+  background-color: $white;
   @include clearfix();
   @include transition(all .3s $ease-out-expo);
+  @include linear-gradient(135deg, #a5d123 0%,#117b8e 36%,#117b8e 64%,#ce3336 100%);
+  background-color: $black;
   @include screen($screen-mobile) {
     padding: $padding/2;
   }
@@ -72,17 +62,13 @@ p a {
     }
   }
   h1 {
-    font-weight: 100;
-    color: $red;
-    margin: 0;
-    @include screen($screen-mobile) {
-      font-size: 1.75rem;
-    }
+    font-weight: 500;
+    letter-spacing: -.015em;
+    color: $white;
+    margin: 3px 0 0;
+    font-size: 24px;
     a {
-      color: $red;
-      &:hover {
-        color: darken($red, 10%);
-      }
+      color: $white;
     }
   }
   p {
@@ -92,27 +78,22 @@ p a {
   }
   nav {
     float: right;
-    margin: 1.3rem 0 0;
+    margin: 0;
     font-family: $font-sans;
-    font-size: 1.25rem;
-    font-weight: 100;
+    font-size: 18px;
+    font-weight: 500;
     @include screen($screen-mobile) {
       float: none;
       text-align: center;
     }
     a {
+      position: relative;
       display: block;
       padding: .5rem .75rem;
-      margin-left: .5rem;
       text-decoration: none;
+      color: $white;
       &:hover {
-        color: $red;
-      }
-    }
-    li.active a {
-      font-weight: 300;
-      &:hover {
-        color: $blue;
+        background: fade-out($black, .9);
       }
     }
   }
@@ -124,45 +105,44 @@ p a {
       display: inline-block;
     }
   }
-  //Fixed header
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: $header-size;
-  width: 100%;
-  z-index: 1000;
-  &.headroom--not-top {
-    height: 75px;
-    padding: 1.5rem 4rem;
-    @include screen($screen-tablet) {
-      padding: 1.2rem 1.2rem 0 .75rem;
-      height: 50px;
-    }
-    .site-id {
-      h1 {
-        @include screen($screen-tablet) {
-          float: left;
-          font-size: 1rem;
-        }
-      }
-      p {
-        opacity: 0;
-        @include screen($screen-tablet) {
-          display: none;
-        }
-      }
-    }
-    nav {
-      margin: -3px 0 0;
-      @include screen($screen-tablet) {
-        float: right;
-        a {
-          font-size: 1rem;
-          padding: 0;
-        }
-      }
-    }
-  }
+  // //Fixed header
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // height: $header-size;
+  // width: 100%;
+  // z-index: 1000;
+  // &.headroom--not-top {
+  //   height: $header-size;
+  //   @include screen($screen-tablet) {
+  //     padding: 1.2rem 1.2rem 0 .75rem;
+  //     height: 50px;
+  //   }
+  //   .site-id {
+  //     h1 {
+  //       @include screen($screen-tablet) {
+  //         float: left;
+  //         font-size: 1rem;
+  //       }
+  //     }
+  //     p {
+  //       opacity: 0;
+  //       @include screen($screen-tablet) {
+  //         display: none;
+  //       }
+  //     }
+  //   }
+  //   nav {
+  //     margin: -3px 0 0;
+  //     @include screen($screen-tablet) {
+  //       float: right;
+  //       a {
+  //         font-size: 1rem;
+  //         padding: 0;
+  //       }
+  //     }
+  //   }
+  // }
 }
 
 .project {
@@ -173,6 +153,66 @@ p a {
   }
   p {
     font-size: 1.1rem;
+  }
+  &.heroku {
+    @include screen($screen-tablet) {
+      @include flex-dir(column);
+    }
+    .logo {
+      padding: $padding;
+      background-image: radial-gradient(circle at 50% top, rgba(84,90,182,0.6) 0%,rgba(84,90,182,0) 75%),radial-gradient(circle at right top, #794aa2 0%,rgba(121,74,162,0) 57%);
+      background-repeat: no-repeat;
+      background-size: 100% 1000px;
+      color: white;
+      // background-image: url(../img/goinstant/tree.png);
+      @include hidpi() {
+        background-size: 50%;
+      }
+      @include flexbox();
+      @include align-items(center);
+    }
+    .showcase {
+      @include flex-grow(1);
+      @include flexbox();
+      background-image: radial-gradient(circle at 50% top, rgba(84,90,182,0.6) 0%,rgba(84,90,182,0) 75%),radial-gradient(circle at right top, #794aa2 0%,rgba(121,74,162,0) 57%);
+      background-repeat: no-repeat;
+      background-size: 100% 1000px;
+      color: white;
+      @include screen($screen-small) {
+        @include flex-direction(column);
+      }
+      > div {
+        width: 100%;
+        padding: $padding/2;
+        z-index: 200;
+        &:first-child {
+          padding: $padding/1.25 $padding;
+        }
+        &:last-child {
+          a {
+            margin: $padding/4;
+
+          }
+        }
+      }
+      a {
+        display: block;
+      }
+      h2, p {
+        display: inline-block;
+        margin: 0 .25rem 0;
+        color: white;
+      }
+      p {
+        color: lighten($purple, 35%);
+        position: relative;
+        font-size: 1.1rem;
+        top: 1px;
+      }
+      img {
+        border-radius: 2px;
+      }
+    }
   }
   &.goinstant {
     @include screen($screen-tablet) {
@@ -207,7 +247,7 @@ p a {
         &:last-child {
           a {
             margin: $padding/4;
-            
+            text-align: right;
           }
         }
       }
@@ -227,6 +267,7 @@ p a {
       }
       img {
         border-radius: 2px;
+        display: inline-block;
       }
       &:after {
         content: "";
@@ -245,7 +286,7 @@ p a {
       @include flexbox();
       @include flex-grow(2);
       padding: $padding/2 $padding;
-      background: $purple url(../img/ouija/showcase.png) no-repeat $padding bottom;
+      background: darken($purple, 20%) url(../img/ouija/showcase.png) no-repeat $padding bottom;
       @include screen($screen-mobile) {
         height: 400px;
         background-position: bottom;
@@ -301,7 +342,7 @@ p a {
         width: 250px;
         height: 300px;
         @include hidpi {
-          @include transform(scale(.5)); 
+          @include transform(scale(.5));
         }
       }
     }
@@ -373,10 +414,12 @@ p a {
 }
 
 .about {
-  background: url(../img/tex-nav.png);
+  margin: $padding*1.5 auto $padding*2;
+  text-align: center;
   background-size: 132px 132px;
   @include flexbox();
   width: 100%;
+  max-width: 650px;
   @include screen($screen-mobile) {
     @include flex-dir(column);
   }
@@ -430,7 +473,7 @@ p a {
         font-size: 1.3rem;
         margin-right: 1rem;
         font-family: $font-sans;
-        font-weight: 200;
+        font-weight: 400;
         text-align: center;
         @include screen($screen-mobile) {
           color: white;
@@ -565,7 +608,7 @@ main {
   .back {
     display: block;
     color: $gray;
-    border-top: 1px solid #222;
+    border-top: 1px solid fade-out($blue, .5);
     padding-top: 2rem;
     text-transform: uppercase;
     &:before {
@@ -575,7 +618,7 @@ main {
       margin-right: 3px;
     }
     &:hover {
-      color: white;
+      color: $blue;
     }
   }
 }
